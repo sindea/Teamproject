@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings><!-- 데이타베이스는 언더바로 돼어있는데 자동으로 낙타표기법으로 바꾸는 코드 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	
+	<!-- 쿼리 수행 결과를  DTO에 자동 매핑하기 위해 DTO 검색 (전체로 세팅하는 코드)-->
+	<typeAliases>
+		<package name="com.movie.dto" />
+	</typeAliases>
+		<!-- 개별로 세팅하는 코드
+		<typeAlias alias="Employees" type="com.edu.dto.Employees" />
+		 -->
+	
+</configuration>
