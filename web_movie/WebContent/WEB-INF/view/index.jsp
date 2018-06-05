@@ -105,7 +105,7 @@ function doLogout(){
 				</div>
 				<div class="btn-group" role="group">
 					<a class="btn btn-default" href='<c:url value="/userpro.do" />'target="demoFrame" >
-						개인 프로필</a>
+						예매 내역조회</a>
 				</div>
 			</div>
 
@@ -144,7 +144,7 @@ function doLogout(){
 									<div class="panel-body">
 										<div class="examples list-group">
 											<a href='<c:url value="/bbs/free/list.do"/>'
-												class="list-group-item" target="demoFrame"> 자유게시판 </a>
+												class="list-group-item" target="demoFrame"> 영화표 예매 </a>
 										</div>
 									</div>
 								</div>
