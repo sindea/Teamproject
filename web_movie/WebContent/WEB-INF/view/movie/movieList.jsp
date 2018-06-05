@@ -24,7 +24,7 @@
 	var yy = d.getFullYear();
 	var mm = d.getMonth() + 1;
 	var dd = d.getDate() - 1;
-	var today = `${yy}${mm}${dd}`;
+	var today = `20180604`;
 	xhr.open('GET', "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=4a692216dacd9ef10f5bbff60be6e78f&targetDt="+ today);
 	xhr.send();
 	xhr.onreadystatechange = function() {
@@ -52,39 +52,6 @@
 			}
 		} else {
 			console.log('통신 데이터 전송 실패');
-		}
-		result_view.innerHTML = template;
-		// 랭킹 4위부터 회색배경
-		var rank_array = document.querySelectorAll('.rank');
-		var gray_array = Array.prototype.slice.apply(rank_array);
-		var gray_rank = gray_array.slice(3);
-		for(var i=0; i<gray_rank.length; i++){
-			gray_rank[i].classList.add('gray');
-		}
-		// 순위변경 표시하기
-		var rankinten_array = document.querySelectorAll('.rank-change');
-		for(var a=0; a<rankinten_array.length; a++){
-			var rankinten_el = rankinten_array[a];
-			var rankinten_el_first = rankinten_el.firstChild;
-			// console.log(rankinten_el_first.nodeValue);
-			// 순위변경이 없다면 숫자 0을 없애고 css에 적용한 zero클래스 붙이기
-			if(rankinten_el_first.nodeValue == 0){
-				rankinten_el_first.nodeValue = '';
-				rankinten_el.classList.add('zero');
-			}
-			// 순위가 올랐다면 css에 적용한 up클래스 붙이기
-			else if(rankinten_el_first.nodeValue > 0){
-				rankinten_el.classList.add('up');
-			}
-			// 순위가 내려갔다면 css에 적용한 down클래스 붙이기, 마이너스 없애기
-			else if(rankinten_el_first.nodeValue < 0){
-				// console.log(rankinten_el_first.nodeValue[0]);
-				var el_value = rankinten_el_first.nodeValue;
-				var result = el_value.slice(1)+el_value.slice(2, el_value.length);
-				// console.log(result);
-				rankinten_el_first.nodeValue = result;
-				rankinten_el.classList.add('down');
-			}
 		}
 	}
 })(this, this.XMLHttpRequest);
