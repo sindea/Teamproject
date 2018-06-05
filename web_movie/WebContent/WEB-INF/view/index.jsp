@@ -23,6 +23,7 @@
 	padding-left: 10px;
 }
 
+
 .wrp {
 	width: 100%;
 	text-align: center;
