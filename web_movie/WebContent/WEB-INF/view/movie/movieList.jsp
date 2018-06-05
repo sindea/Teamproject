@@ -21,5 +21,3 @@ var xhr = new XMLHttpRequest();
 xhr.open('GET', "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=4a692216dacd9ef10f5bbff60be6e78f&targetDt="+ today);
 xhr.send();
 </script>
-</body>
-</html>
