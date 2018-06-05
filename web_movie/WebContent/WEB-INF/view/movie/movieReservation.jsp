@@ -36,11 +36,33 @@ $(document).ready(function(){
 //	return;
 //}
 
-function doWrite(){
-	var frm = document.writeForm;
-	frm.action = "/web_portfolio/bbs/free/write.do";
-	frm.method = "post";
-	frm.submit();
+function seatView(){
+	
+	$.ajax({
+		url: '/web_movie/chkSeat.do',
+		type: "post",
+		data: {'userId' : userId},
+		success: function(result, textStatus, jqXHR){
+			if(result == 0){ // 중복 안됨
+				var frm = document.registerForm;
+				// frm = $('form[name=registerForm]')[0];
+				frm.action = '/web_portfolio/user/join.do';
+				frm.method = 'post';
+				frm.submit();
+			}
+			else { // 중복 되든 문제가 잇음
+				// ID가 중복됩니다. (경고참)
+				alert("ID가 중복됩니다.");
+				// 커서를 id입력하는곳으로 이동
+				$('#j_userId').focus();
+			}
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			console.log(jqXHR);
+			console.log(textStatus);
+			console.log(errorThrown);
+		}
+	})
 }
 </script>
 <script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
@@ -48,7 +70,7 @@ function doWrite(){
 <body>
 <div id="tabs">
 	<ul>
-		<li><a href="#tabs-1">자유게시판 작성</a></li>
+		<li><a href="#tabs-1">영화 예매</a></li>
 	</ul>
 	<div id="tabs-1">
 		<!-- wrap -->
@@ -64,60 +86,50 @@ function doWrite(){
 					<div class="board_area">
 						<form name="writeForm" enctype="multipart/form-data">
 							<fieldset>
-								<legend>Ses & Food 글쓰기</legend>
+								<legend>영화 예매</legend>
 								<c:if test="${msg != null }">
 							${msg }
 							</c:if>
 
 								<!-- board write table -->
-								<table summary="표 내용은 Ses & Food 글쓰기 박스입니다."
+								<table summary="표 내용은 영화 예매 테이블입니다."
 									class="board_write_table">
-									<caption>Ses & Food 글쓰기 박스</caption>
+									<caption>영화 예매 박스</caption>
 									<colgroup>
 										<col width="20%" />
 										<col width="80%" />
 									</colgroup>
 									<tbody>
 										<tr>
-											<th class="tright"><label for="board_write_name">이름</label></th>
+											<th class="tright"><label for="board_write_name">제목</label></th>
 											<td class="tleft">
-												<input name="name" type="text" id="name" title="이름 입력박스" class="input_100" value="${sessionScope.nickname}" readonly="readonly"/>
+												<input name="movieName" type="text" id="name" title="이름 입력박스" class="input_100" value="" readonly="readonly"/>
 											</td>
 										</tr>
 										<tr>
-											<th class="tright"><label for="board_write_name">공개 설정</label></th>
+											<th class="tright"><label for="board_write_name">상영관</label></th>
 											<td class="tleft">
-												<input type="radio" name="privacy" checked="checked" value="0"/>공개
-												<input type="radio" name="privacy" value="1"/>비공개
+												<input type="radio" name="privacy" checked="checked" value="1"/>성하점
+												<input type="radio" name="privacy" value="2"/>지수점
+												<input type="radio" name="privacy" value="3"/>명성점
 											</td>
 										</tr>
 										<tr>
-											<th class="tright"><label for="board_write_title">제목</label></th>
-											<td class="tleft"><input name="title" type="text"
-												id="board_write_title" title="제목 입력박스" class="input_380" />
+											<th class="tright"><label for="board_write_title">날짜</label></th>
+											<td class="tleft"><input name="date" type="text"
+												id="board_write_title" title="날짜박스" class="input_300" readonly="readonly"/>
+											<input type="button" onclick="" value="달력" title="달력"/>
 											</td>
 										</tr>
 										<tr>
-											<th class="tright"><label for="board_write_title">내용</label></th>
-											<td class="tleft">
-												<div class="editer">
-													<p>
-														<textarea id="editor1" name="contents" rows="25" cols="100"></textarea>
-														<script>
-														CKEDITOR.replace( 'editor1' );
-														</script>
-														
-													</p>
-												</div>
+											<th class="tright"><label for="board_write_title">시간
+											</label></th>
+											<td align="middle">
+											<input type="button" onclick="" value="시간보기" title="시간보기" align="middle"/>
+											
 											</td>
 										</tr>
-										<tr>
-											<th class="tright">첨부파일</th>
-											<td class="tleft">
-												<input type="file" name="attachFile"/><br/>
-												<input type="file" name="attachFile"/>						
-											</td>
-										</tr>
+										
 									</tbody>
 								</table>
 								<!-- //board write table -->
@@ -125,8 +137,7 @@ function doWrite(){
 								<!-- bottom button -->
 								<div class="btn_bottom">
 									<div class="btn_bottom_right">
-										<input type="button" onclick="window.history.back()" value="작성취소" title="작성취소" />
-										<input type="button" onclick="doWrite()" value="완료" title="완료" />
+										<input type="button" onclick="seatView()" value="좌석보기" title="좌석보기" />
 									</div>
 								</div>
 								<!-- //bottom button -->

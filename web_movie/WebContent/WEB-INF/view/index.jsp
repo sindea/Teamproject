@@ -143,7 +143,7 @@ function doLogout(){
 								<div id="collapse1" class="panel-collapse collapse in">
 									<div class="panel-body">
 										<div class="examples list-group">
-											<a href='<c:url value="/bbs/free/list.do"/>'
+											<a href='<c:url value="/movielist.do"/>'
 												class="list-group-item" target="demoFrame"> 영화표 예매 </a>
 										</div>
 									</div>
