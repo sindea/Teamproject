@@ -10,7 +10,7 @@ public class MovieController {
 	@RequestMapping("/movielist.do")
 	public ModelAndView movie(){
 		ModelAndView mo = new ModelAndView();
-		mo.setViewName("movieList");
+		mo.setViewName("movie/movieList");
 		return mo;
 	}
 		
