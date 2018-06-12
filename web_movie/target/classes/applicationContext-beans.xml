@@ -27,7 +27,7 @@
 
 	<!-- DAO 위치를 basePackage로.. -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.iot.web.dao" />
+		<property name="basePackage" value="com.movie.dao" />
 	</bean>
 
 	<!-- 트랜잭션 관리를 위한 bean  -->

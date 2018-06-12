@@ -13,17 +13,34 @@
 	    $.ajax({
 	       url : "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=4a692216dacd9ef10f5bbff60be6e78f&targetDt=${today}",
 	       success : function(data) {
-	    	   var BoxOfficedata = data;
 	           //영화 제목과 순위출력
+	           $.ajax({
+	        	   
+		url : "<c:url value ='/moviedata.do'/>",
+		type : "post",
+		data : {'data' : data, 'daily' : '${today}'},
+		success : function(result, textStatus, jqXHR){
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR);
+			console.log(textStatus);
+			console.log(errorThrown);
+		}
+	});
 	            for(var i=0; i<data['boxOfficeResult']['dailyBoxOfficeList'].length; i++){
 	            document.write(data['boxOfficeResult']['dailyBoxOfficeList'][i]['rank']+"위 : "+data['boxOfficeResult']['dailyBoxOfficeList'][i]['movieNm'] +"<br>")
 	            }
 	           }
 	        });
 	 }
-
 </script>
 </head>
 <body onload="callAjax()">
+<table>
+
+
+
+</table>
 </body>
 </html>
